@@ -43,7 +43,9 @@ tabs.forEach((tab, i) => {
 // PAGE IDENTIFIER
 
 const loc = location.pathname.replace("/", "")
-console.log(loc)
+console.log(location.pathname.replace("/", ""))
+
+
 if (loc == "index.html") {
 
     
