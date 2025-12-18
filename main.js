@@ -42,9 +42,9 @@ tabs.forEach((tab, i) => {
 
 // PAGE IDENTIFIER
 
-const loc = location.pathname.split("/")
+const loc = location.pathname.split("/")[location.pathname.split("/") - 1]
 console.log(loc)
-console.log(loc[loc.length - 1])
+console.log(location.pathname.split("/")[location.pathname.split("/") - 1])
 console.log(location.pathname.replace("/", ""))
 
 
