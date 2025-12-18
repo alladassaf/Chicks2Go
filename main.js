@@ -42,13 +42,14 @@ tabs.forEach((tab, i) => {
 
 // PAGE IDENTIFIER
 
-const loc = location.pathname.split("/")[location.pathname.split("/").length - 1]
+const locArr = location.pathname.split("/")
+const loc = locArr[locArr.length - 1]
 console.log(loc)
-console.log(location.pathname.split("/")[location.pathname.split("/").length - 1])
+console.log(locArr)
 console.log(location.pathname.replace("/", ""))
 
 
-if (loc == "index.html") {
+if (loc == "index.html" || loc == "") {
 
     
     // BEGIN OFFER LIST
