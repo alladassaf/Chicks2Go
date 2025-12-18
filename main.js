@@ -217,6 +217,7 @@ if (loc == "menu.html") {
             ]
         ]
 
+    const menuContainer = document.querySelector(".menu_list")
     const menuLists = document.querySelectorAll(".menu_list .list")
     const options = document.querySelectorAll(".options li")
 
@@ -240,7 +241,18 @@ if (loc == "menu.html") {
         })
     })
 
+    const menuListHeights = []
+    menuLists.forEach(list => {
+        const listHeght = getComputedStyle(list).height
+        const conv = parseInt(listHeght)
 
+        menuListHeights.push(conv)
+    })
+
+    const maxHeightList = Math.max(...menuListHeights)
+
+    console.log(maxHeightList)
+    menuContainer.style.height = `${maxHeightList}px`
     menuLists[0].classList.add("active")
 
     options.forEach((o, ind) => {
