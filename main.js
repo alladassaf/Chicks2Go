@@ -46,7 +46,6 @@ const locArr = location.pathname.split("/")
 const loc = locArr[locArr.length - 1]
 console.log(loc)
 console.log(locArr)
-console.log(location.pathname.replace("/", ""))
 
 
 if (loc == "index.html" || loc == "") {
@@ -65,7 +64,7 @@ if (loc == "index.html" || loc == "") {
     const cardFlexBasis = getComputedStyle(cards[0]).flexBasis
     const cardWidth = parseInt(cardFlexBasis.substring(cardFlexBasis.indexOf("(") + 1, cardFlexBasis.indexOf("%")))
     const slideNum = Math.ceil(cards.length / parseInt((100 / cardWidth)))
-    let gap = parseInt(getComputedStyle(listContainer).gap)
+    let gap = getComputedStyle(listContainer).gap
     
     
     console.log(typeof cardWidth)
@@ -251,7 +250,6 @@ if (loc == "menu.html") {
 
     const maxHeightList = Math.max(...menuListHeights)
 
-    console.log(maxHeightList)
     menuContainer.style.height = `${maxHeightList}px`
     menuLists[0].classList.add("active")
 
@@ -354,15 +352,14 @@ function toggleCarousel(i, carousels, listContainer, slideNum, cardWidth, gap) {
             dividerNum = 1.2
         break;
         case 50:
-            dividerNum = 1.1
+            dividerNum = 1.2
         break;
         case 100:
             dividerNum = 2
         break;
     }
-    console.log(dividerNum)
 
-    listContainer.style.transform = `translateX(calc(-${100 * i}% - ${parseInt(gap * i / dividerNum)}px))`
+    listContainer.style.transform = `translateX(calc(-${100 * i}% - (${(parseInt(gap) * i) + 0.5}px))`
 }
 
 function createCarousel(sliderBtns) {

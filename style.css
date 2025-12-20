@@ -5,10 +5,11 @@
 }
 
 :root {
+    font-size: 1em;
     --gutter: 5vw;
 
-    --gap: 20px;
-    --flex-basis: calc(50% - (var(--gap) / 1.85));
+    --gap: 10px;
+    --flex-basis: calc(50% - (var(--gap) / 2));
 
 
     --primary-clr: #423130;
@@ -210,7 +211,8 @@ nav ul a {
     /* gap: 5px; */
     border: 2px solid white;
     border-radius: 15px;
-    isolation: isolate;
+    user-select: none;
+
 }
 
 .tablets .movable {
@@ -499,18 +501,23 @@ main .specials {
 .menu_container {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 20px;
+    row-gap: 50px;
 }
 
 .menu_container .options {
     list-style: none;
-    width: 100%;
-    height: 50px;
+    grid-column: span 1;
     display: flex;
+    border-radius: 5px;
+    box-shadow: -2px 2px 8px #ccc;
+
 }
 
 .menu_container .options li {
-    padding: 10px 20px;
+    padding: 40px 20px;
     font-size: 0.9rem;
     display: grid;
     place-content: center;
@@ -527,13 +534,12 @@ main .specials {
 }
 
 .menu_container .options li:hover {
-    background-color: #ccc9;
+    background-color: rgba(223, 221, 221,0.5);
 }
 
 .menu_container .menu_list {
     position: relative;
-    margin-top: 50px;
-    width: 100%;
+    grid-column: span 1;
     
 }
 
@@ -549,7 +555,6 @@ main .specials {
 }
 
 .menu_list .list.active {
-    display: flex;
     visibility: visible;
 }
 
@@ -603,26 +608,39 @@ main .specials {
 }
 
 .catering_container .intro_text {
-    margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 30px;
     text-align: center;
+}
+
+.catering_container .intro_text::before {
+    content: '';
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -15px;
+    border-radius: 25px;
+    background-color: rgba(223, 221, 221,0.5);
+    height: 2px;
 }
 
 .catering_options {
     display: flex;
     flex-flow: row wrap;
-    gap: 40px;
+    column-gap: 20px;
+    row-gap: 40px
 }
 
 .catering_options .option {
     flex: 0 0 100%;
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 16 / 8;
     display: flex;
     flex-direction: column;
     border: 2px solid var(--secondary-clr);
 }
 
 .option .top {
-    flex: 0 0 65%;
+    flex: 0 0 70%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -647,10 +665,11 @@ main .specials {
 
 .option .bottom a.btn {
     margin-top: auto;
-    padding: 5px 40px;
+    padding: 0.18rem 2.5rem;
     background-color: var(--secondary-clr);
     border: 2px solid black;
     border-radius: 15px;
+    font-size: 0.85rem;
 }
 
 /* ABOUT PAGE */
@@ -831,9 +850,9 @@ footer .copy {
 @media (min-width: 810px) {
 
     :root {
-        --gutter: 15vw;
+        --gutter: 10vw;
 
-        --gap: 20px;
+        --gap: 10px;
         --flex-basis: calc(33% - (var(--gap) / 2));
 
 
@@ -876,7 +895,6 @@ footer .copy {
         letter-spacing: 1.3px;
         color: white;
         text-shadow: -2px 1px black;
-        /* -webkit-text-stroke: 0.3px black; */
         overflow: hidden;
     }
 
@@ -954,6 +972,91 @@ footer .copy {
         grid-column: 1 / 2;
         grid-row: 3 / 5;
         border-radius: 0 0 0 15px;
+    }
+
+    /* MENU ITEMS */
+
+    .menu_container {
+        grid-template-columns: 25% 1fr;
+    }
+
+    .menu_container .options {
+        border-radius: 5px;
+        grid-column: 1 / 2;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+
+    .menu_container .options li {
+        position: relative;
+        padding: 19px 20px;
+        font-size: 0.97rem;
+        display: grid;
+        place-content: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .menu_container .options li:not(:first-child) {
+        /* border-top: 1px solid var(--primary-clr); */
+        border-left: 0;
+
+    }
+
+    .menu_container .options li:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 0;
+        border-radius: 25px;
+        background-color: rgba(223, 221, 221,0.5);
+        height: 2px;
+    }
+
+    .menu_container .options li:not(:last-child) {
+        /* border-bottom: 1px solid var(--primary-clr); */
+        border-right: 0;
+    }
+
+    .menu_container .options li:hover {
+        background-color: rgba(223, 221, 221, 0.5);
+    }
+
+    .menu_container .menu_list {
+        position: relative;
+        grid-column: 2 / 4;
+        
+    }
+
+    .catering_options {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .catering_options .option {
+        flex: 0 0 calc(50% - (20px / 2));
+        aspect-ratio: 16 / 11;
+        display: flex;
+        flex-direction: column;
+        border: 2px solid var(--secondary-clr);
+    }
+
+    .option .top {
+        flex: 0 0 55%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .option .bottom {
+        padding: 5px 0 5px 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
     }
 
     .contact_us {
@@ -1039,6 +1142,11 @@ footer .copy {
 }
 
 @media (min-width: 1200px) {
+
+    :root {
+        font-size: 1em;
+    }
+
     header {
         position: sticky;
         padding: 20px var(--gutter);
@@ -1088,4 +1196,58 @@ footer .copy {
     .toggle_btn {
         display: none
     }
+
+    /* MENU ITEMS */
+
+    .menu_container {
+        grid-template-columns: 20% 1fr;
+    }
+
+    .menu_container .options li {
+        position: relative;
+        padding: 19px 20px;
+        font-size: 1.1rem;
+        display: grid;
+        place-content: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .menu_container .options li:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 0;
+        border-radius: 25px;
+        background-color: rgba(223, 221, 221,0.5);
+        height: 2px;
+    }
+
+    .menu_container .menu_list {
+        position: relative;
+        grid-column: 2 / 4;   
+    }
+
+    .menu_list .list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        gap: var(--gap);
+        visibility: hidden;
+    }
+
+    .menu_list .list.active {
+        visibility: visible;
+    }
+
+    .menu_list .list .item {
+        flex: 0 0 calc(33% - (var(--gap) / 2));
+        aspect-ratio: 1 / 1.2;
+        border: 1px solid var(--secondary-clr);
+    }
+
 }
